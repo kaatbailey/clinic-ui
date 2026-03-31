@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = 'https://com-clinic.onrender.com';
 
 export async function getDoctors() {
     const response = await fetch(`${BASE_URL}/api/doctors`);
