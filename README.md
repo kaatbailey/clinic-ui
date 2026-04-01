@@ -1,16 +1,67 @@
-# React + Vite
+# Clinic UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React frontend for the Clinic Appointment System, allowing patients to view doctors,
+book appointments, and manage their bookings.
 
-Currently, two official plugins are available:
+**Live Demo:** https://kaatbailey.github.io/clinic-ui
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**NOTE:  Live Demo is on a free tier host and takes about a minute to spin up 
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19** — component-based UI
+- **Vite** — fast build tooling and dev server
+- **React Router DOM** — client-side routing
+- **Tailwind CSS** — utility-first styling
+- **JavaScript (ES6+)**
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- View all doctors and their availability
+- View all patients
+- Book appointments with availability validation
+- Cancel existing appointments
+- Error handling that surfaces business rule violations from the API
+
+## Architecture
+
+The app follows a simple pages + components structure:
+```
+src/
+├── api/
+│   └── clinicApi.js        # All API calls to the backend
+├── components/
+│   └── NavBar.jsx           # Navigation
+├── pages/
+│   ├── DoctorsPage.jsx
+│   ├── PatientsPage.jsx
+│   ├── AppointmentsPage.jsx
+│   └── BookAppointmentPage.jsx
+├── App.jsx                  # Routes
+└── main.jsx
+```
+
+All backend communication is centralized in `clinicApi.js`. Pages fetch data
+on mount using `useEffect` and manage local state with `useState`.
+
+## Backend
+
+This frontend connects to a Spring Boot REST API:
+**https://com-clinic.onrender.com**
+
+See the [backend repository](https://github.com/kaatbailey/com.clinic) for API documentation.
+
+## Running Locally
+```bash
+npm install
+npm run dev
+```
+
+App runs at `http://localhost:5173`.
+
+## Deployment
+
+Deployed to GitHub Pages via the `gh-pages` package:
+```bash
+npm run deploy
+```
